@@ -11,8 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.agarcia.pdmcourse.clase5_250325_LemonadeApp.LemonadeApp
-import com.agarcia.pdmcourse.class4_200325_JetpackCompose.TaskCompleted
+import com.agarcia.pdmcourse.class5_250325_LemonadeApp.LemonadeApp
+import com.agarcia.pdmcourse.class6_270325_TipCalculator.TipCalculator
 import com.agarcia.pdmcourse.ui.theme.PDMCourseTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       PDMCourseTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          LemonadeApp(
+          TipCalculator(
             modifier = Modifier.padding(innerPadding)
           )
         }

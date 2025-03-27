@@ -1,4 +1,4 @@
-package com.agarcia.pdmcourse.clase5_250325_LemonadeApp
+package com.agarcia.pdmcourse.class5_250325_LemonadeApp
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,10 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.agarcia.pdmcourse.R
+import kotlin.random.Random
 
 @Composable
 fun LemonadeApp (modifier:Modifier = Modifier) {
   var currentStep by remember { mutableIntStateOf(1) }
+
+  var tapsNeeded by remember { mutableIntStateOf(Random.nextInt(2,5)) }
+  var currentTaps by remember { mutableIntStateOf(0) }
 
   val imageResource = when (currentStep) {
     1 -> R.drawable.lemon_tree
@@ -46,8 +50,19 @@ fun LemonadeApp (modifier:Modifier = Modifier) {
     else -> "Tap the empty glass to start again"
   }
 
-  var onImageClick = {
-    currentStep = if (currentStep == 4) 1 else currentStep + 1
+  var onImageClick:() ->Unit = {
+    if(currentStep == 2){
+      currentTaps++
+      if(currentTaps >= tapsNeeded) {
+        currentStep++
+        currentTaps = 0
+      }
+    } else if (currentStep == 4) {
+      tapsNeeded = Random.nextInt(2,5)
+      currentStep = 1
+    } else{
+      currentStep++
+    }
   }
 
   Column(modifier = modifier) {
@@ -56,6 +71,8 @@ fun LemonadeApp (modifier:Modifier = Modifier) {
       imageResource,
       buttonText,
       onClickImage = onImageClick,
+      currentTaps,
+      tapsNeeded
     )
   }
 }
@@ -78,7 +95,9 @@ fun TopBar() {
 fun LemonadeContainer(
   imageResource: Int,
   text: String,
-  onClickImage: () -> Unit
+  onClickImage: () -> Unit,
+  currentTaps: Int,
+  taps: Int
 ) {
   Column(
     modifier = Modifier.fillMaxSize(),
@@ -97,8 +116,11 @@ fun LemonadeContainer(
     }
     Spacer(Modifier.height(24.dp))
     Text(
-      text = text,
+      text = text
     )
+    if (imageResource == R.drawable.lemon_squeeze) {
+      Text(text = "Numero de pasos faltantes:  ${taps-currentTaps}")
+    }
   }
 }
 
