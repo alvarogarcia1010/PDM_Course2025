@@ -1,6 +1,7 @@
 package com.agarcia.pdmcourse.class6y7_270325_TipCalculator
 
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -78,7 +79,8 @@ fun TipCalculator (modifier: Modifier = Modifier) {
   }
 }
 
-private fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
+@VisibleForTesting
+internal fun calculateTip(amount: Double, tipPercent: Double = 15.0): String {
   val tip = tipPercent / 100 * amount
   return NumberFormat.getCurrencyInstance().format(tip)
 }
