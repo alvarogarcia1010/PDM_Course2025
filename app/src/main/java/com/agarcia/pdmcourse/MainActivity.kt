@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.agarcia.pdmcourse.class19_220525_GoogleMaps.MyGoogleMaps
 import com.agarcia.pdmcourse.class6y7_270325_TipCalculator.TipCalculator
 import com.agarcia.pdmcourse.ui.theme.PDMCourseTheme
 
@@ -26,9 +27,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       PDMCourseTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          TipCalculator(
-            modifier = Modifier.padding(innerPadding)
-          )
+          MyGoogleMaps(modifier = Modifier.padding(innerPadding))
         }
       }
     }
